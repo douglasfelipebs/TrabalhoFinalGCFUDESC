@@ -258,7 +258,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content modal-items">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="TituloModalCentralizado">Cadastro de Produtos 
+                        <h5 class="modal-title" id="TituloModalCentralizado">Cadastro de Produto
                             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
