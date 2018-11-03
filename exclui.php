@@ -14,7 +14,11 @@ $id = $_GET["id"];
 switch ($tipo) {
     case 'pro':
         $sSql = "DELETE FROM tbproduto WHERE procodigo = {$id}";
-        $sLocation = "Location: produtos.php?alert=2";
+        $sLocation = "Location: produtos.php";
+        break;
+    case 'cli':
+        $sSql = "DELETE FROM tbcliente WHERE clicodigo = {$id}";
+        $sLocation = "Location: clientes.php";
         break;
     default:
         break;
@@ -22,6 +26,5 @@ switch ($tipo) {
 if(!empty($sSql)){
     $oQuery = pg_query($conection, $sSql);
     pg_execute($oQuery);
-    echo $sSql;
     header($sLocation);
 }
