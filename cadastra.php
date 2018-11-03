@@ -15,10 +15,9 @@ $sDescricao     = $_POST["descricao"];
 $sFabricante    = $_POST["fabricante"];
 $fPreco         = $_POST["preco"];
 
-$sSqlTempTable = 'WITH series AS (SELECT generate_series(1, (SELECT max(procodigo)
-					     FROM tbproduto)) AS mysequence)';
-pg_query($conection, $sSqlTempTable);
-$sSql = "insert into tbproduto VALUES ((SELECT COALESCE((SELECT min(mysequence) FROM series WHERE series.mysequence NOT IN(SELECT procodigo FROM tbproduto)), (SELECT max(procodigo) + 1          FROM tbproduto), 1)), '{$sNome}', '{$sDescricao}', '{$sFabricante}', {$fPreco});";
+$sSql = "WITH series AS (SELECT generate_series(1, (SELECT max(procodigo)
+					     FROM tbproduto)) AS mysequence)";
+$sSql .= "insert into tbproduto VALUES ((SELECT COALESCE((SELECT min(mysequence) FROM series WHERE series.mysequence NOT IN(SELECT procodigo FROM tbproduto)), (SELECT max(procodigo) + 1          FROM tbproduto), 1)), '{$sNome}', '{$sDescricao}', '{$sFabricante}', {$fPreco});";
 $oQuery = pg_query($conection, $sSql);
 pg_execute($oQuery);
 
