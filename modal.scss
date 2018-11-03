@@ -1,0 +1,119 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12/10/2018, 20:32:09
+    Author     : letid
+*/
+
+// necessary styles
+.ffl-wrapper {
+    @include floating-form-labels(1.25rem, 1rem);
+}
+
+// optional styles
+$label-color: #909090;
+$label-color-active: #0289f3;
+$label-color-inactive: rgba(#909090, 0.6);
+$input-border-color: rgba(#000000, 0.2);
+$input-border-color-active: #0289f3;
+$input-height: 1.875rem;
+
+.ffl-label {
+    color: $label-color;
+    line: {
+        height: 1.2;
+    }
+    .ffl-floated & {
+        color: $label-color-active;
+        font: {
+            size: 0.75rem;
+        }
+    }    
+}
+
+form {
+    max-width: 30rem;
+    margin: 2rem auto 0;
+    background-color: #ffffff;
+    padding: 1rem;
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+input,
+textarea,
+select {
+    transition: border-bottom 100ms ease;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 1rem;
+    box: {
+        shadow: none;
+    }
+    appearance: none;
+    outline: none;
+    background: {
+        color: transparent;
+    }
+    border: {
+        style: none;
+        bottom: {
+            width: 1px;
+            style: solid;
+            color: $input-border-color;
+        }
+    }
+    height: $input-height;
+    &:hover {
+        border: {
+            bottom: {
+                width: 1px;
+                color: $label-color;
+            }
+        }
+    }
+    &:focus {
+        border: {
+            bottom: {
+                width: 1px;
+                color: $input-border-color-active;
+            }
+        }
+    }    
+}
+
+textarea {
+    resize: none;
+    min: {
+        height: $input-height; 
+    }
+}
+
+label {
+    > span {
+        color: #cccccc;
+    }
+}
+
+[type="submit"] {
+    transition: background-color 0.3s ease;
+    border: none;
+    background-color: $label-color-active;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1rem;
+    float: right;
+    &:hover,
+    &:focus {
+        background-color: darken($label-color-active, 5%);
+    }
+}
