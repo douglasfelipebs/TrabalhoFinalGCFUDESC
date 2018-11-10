@@ -328,10 +328,10 @@
                             <input type="text" class="form-control border-input" id="uf" name="uf">
                     </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" form="cadastro" class="btn btn-primary">Cadastrar</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" form="cadastro" class="btn btn-primary">Cadastrar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -387,10 +387,10 @@
                         <input type="text" class="form-control border-input" id="ufAltera" name="ufAltera">
                 </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="cadastro" class="btn btn-primary">Cadastrar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" form="cadastro" class="btn btn-primary">Cadastrar</button>
+                </div>
             </div>
         </div>
     </div>
