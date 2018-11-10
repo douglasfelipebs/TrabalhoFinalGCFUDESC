@@ -145,7 +145,7 @@
         </div>
         <style>
             .modal-items {
-                z-index: 2048
+                z-index: 5048
             }
 
             .ffl-wrapper > input {
@@ -394,7 +394,6 @@
             </div>
         </div>
     </div>
-    <?php include_once './footer.php'; ?>
 </div>
 </div>
 </body>
