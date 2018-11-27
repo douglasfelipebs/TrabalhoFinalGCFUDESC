@@ -100,21 +100,33 @@
                                         function alterarItem(id) {
                                             var oCodigo = document.getElementById('codigoAltera');
                                             var oNome = document.getElementById('nomeAltera');
-                                            var oDescricao = document.getElementById('descricaoAltera');
-                                            var oFabricante = document.getElementById('fabricanteAltera');
-                                            var oPreco = document.getElementById('precoAltera');
+                                            var oCpf = document.getElementById('cpfAltera');
+                                            var oLogradouro = document.getElementById('logradouroAltera');
+                                            var oNumero = document.getElementById('numeroAltera');
+                                            var oBairro = document.getElementById('bairroAltera');
+                                            var oCidade = document.getElementById('cidadeAltera');
+                                            var oCep = document.getElementById('cepAltera');
+                                            var oUf = document.getElementById('ufAltera');
 
                                             var iCodigoAtual = document.getElementById('0' + id).textContent;
                                             var sNomeAtual = document.getElementById('1' + id).textContent;
-                                            var sDescricaoAtual = document.getElementById('2' + id).textContent;
-                                            var sFabricanteAtual = document.getElementById('3' + id).textContent;
-                                            var fPrecoAtual = document.getElementById('4' + id).textContent;
+                                            var sCpfAtual = document.getElementById('2' + id).textContent;
+                                            var sLogradouroAtual = document.getElementById('3' + id).textContent;
+                                            var iNumeroAtual = document.getElementById('4' + id).textContent;
+                                            var sBairroAtual = document.getElementById('5' + id).textContent;
+                                            var sCidadeAtual = document.getElementById('6' + id).textContent;
+                                            var sCepAtual = document.getElementById('7' + id).textContent;
+                                            var sUfAtual = document.getElementById('8' + id).textContent;
 
                                             $(oCodigo).val(iCodigoAtual);
                                             $(oNome).val(sNomeAtual);
-                                            $(oDescricao).val(sDescricaoAtual);
-                                            $(oFabricante).val(sFabricanteAtual);
-                                            $(oPreco).val(fPrecoAtual);
+                                            $(oCpf).val(sCpfAtual);
+                                            $(oLogradouro).val(sLogradouroAtual);
+                                            $(oNumero).val(iNumeroAtual);
+                                            $(oBairro).val(sBairroAtual);
+                                            $(oCidade).val(sCidadeAtual);
+                                            $(oCep).val(sCepAtual);
+                                            $(oUf).val(sUfAtual);
                                         }
 
                                         function notifyInsersao(from, align) {
@@ -348,7 +360,7 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <form name="cadastro" id="cadastro" action="alteraCliente.php" method="POST">
+                    <form name="altera" id="altera" action="alteraCliente.php" method="POST">
                         <div class="form-group">
                             <label for="codigoAltera" class="ffl-label" hidden>Código</label>
                             <input type="text" id="codigoAltera" name="codigoAltera" hidden>
@@ -389,7 +401,7 @@
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" form="cadastro" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" form="altera" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </div>
