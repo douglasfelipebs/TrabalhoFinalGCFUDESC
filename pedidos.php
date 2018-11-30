@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>Clientes - J & R Informática</title>
+    <title>Pedidos - J & R Informática</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
@@ -55,7 +55,7 @@
                             </style>
                             <div class="header title-add">
                                 <h4 class="title"><?php echo $sItemAtivo ?></h4>
-                                <button class="btn" type="button" data-toggle="modal" data-target="#ModalAddCliente"><i
+                                <button class="btn" type="button" data-toggle="modal" data-target="#ModalAddPedido"><i
                                         class="fa fa-plus"></i></button>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -82,7 +82,7 @@
                                             }
                                             echo '<td> <label id=' . $key . $iCodigo . '>' . $value . '</label></td>';
                                         }
-                                        echo '<td><button class="btn" onclick="alterarItem(' . $iCodigo . ')" type="button" data-toggle="modal" data-target="#ModalAltCliente"><i class="fa fa-edit"></i></button></td>';
+                                        echo '<td><button class="btn" onclick="alterarItem(' . $iCodigo . ')" type="button" data-toggle="modal" data-target="#ModalAltPedido"><i class="fa fa-edit"></i></button></td>';
                                         echo '<td><button class="btn" onclick="exclui(' . $iCodigo . ')"><i class="fa fa-trash"></i></button></td>';
                                         echo '</tr>';
                                     }
@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" data-backdrop="false" id="ModalAddCliente" tabindex="-1" role="dialog"
+        <div class="modal fade" data-backdrop="false" id="ModalAddPedido" tabindex="-1" role="dialog"
              aria-labelledby="TituloModalCentralizado" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-items">
@@ -133,37 +133,43 @@
                         </h5>
                     </div>
                     <div class="modal-body">
-                        <form name="cadastro" id="cadastro" action="cadastraCliente.php" method="POST">
-                            <div class="form-group">
-                                <label for="nome" class="ffl-label">Nome</label>
-                                <input type="text" class="form-control border-input" id="nome" name="nome">
+                        <form name="cadastro" id="cadastro" action="cadastraPedido.php" method="POST">
+                            <div class="row">
+                                <div class="col-lg-3 form-group">
+                                    <label for="codigoCliente" class="ffl-label">Cliente</label>
+                                    <input type="number" class="form-control border-input" id="codigoCliente" oninput="getCliente()" name="codigoCliente">
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    <label>Nome do Cliente</label>
+                                    <input type="text" readonly class="form-control border-input" id="nomeCliente" name="nomeCliente">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cpf" class="ffl-label">CPF</label>
-                                <input type="text" id="cpf" class="form-control border-input" name="cpf"/>
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1 form-group">
+                                    <div class="row">
+                                        <fieldset>
+                                            <legend>Produtos</legend>
+                                            <button type="button" id="add_field" class="btn btn-default">Adicionar</button>
+                                            <br>
+                                            <br>
+                                            <div id="listas">
+                                                <div class="form-group itemProd">
+                                                    <label>Produto: </label>
+                                                    <input type="number" id="idProduto0" oninput="getProduto(this.id)" name="idProduto0" class="form-control border-input">
+                                                    <label>Nome do Produto: </label>
+                                                    <input type="text" readonly id="nomeProduto0" name="nomeProduto0" class="form-control border-input">
+                                                    <label>Quantidade: </label>
+                                                    <input type="text" id="qtdProduto0" name="qtdProduto0" class="form-control border-input">
+                                                    <label>Preço: </label>
+                                                    <input type="number" readonly id="precoProduto0" name="preco0" class="form-control border-input">
+                                                    <label>Desconto: </label>
+                                                    <input type="text" required name="desconto0" class="form-control border-input">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="logradouro" class="ffl-label">Logradouro</label>
-                                <input type="text" class="form-control border-input" id="logradouro" name="logradouro">
-                            </div>
-                            <div class="form-group">
-                                <label for="numero" class="ffl-label">Número</label>
-                                <input type="number" class="form-control border-input" id="numero" name="numero">
-                            </div>
-                            <div class="form-group">
-                                <label for="bairro" class="ffl-label">Bairro</label>
-                                <input type="text" class="form-control border-input" id="bairro" name="bairro">
-                            </div>
-                            <div class="form-group">
-                                <label for="cidade" class="ffl-label">Cidade</label>
-                                <input type="text" class="form-control border-input" id="cidade" name="cidade">
-                            </div>
-                            <div class="form-group">
-                                <label for="cep" class="ffl-label">CEP</label>
-                                <input type="text" class="form-control border-input" id="cep" name="cep">
-                            </div>
-                            <label for="uf" class="ffl-label">UF</label>
-                            <input type="text" class="form-control border-input" id="uf" name="uf">
                     </div>
                     </form>
                     <div class="modal-footer">
@@ -174,7 +180,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" data-backdrop="false" id="ModalAltCliente" tabindex="-1" role="dialog"
+    <div class="modal fade" data-backdrop="false" id="ModalAltPedido" tabindex="-1" role="dialog"
          aria-labelledby="TituloModalCentralizado" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-items">
@@ -186,7 +192,7 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <form name="cadastro" id="cadastro" action="alteraCliente.php" method="POST">
+                    <form name="cadastro" id="cadastro" action="alteraPedido.php" method="POST">
                         <div class="form-group">
                             <label for="codigoAltera" class="ffl-label" hidden>Código</label>
                             <input type="text" id="codigoAltera" name="codigoAltera" hidden>
@@ -232,9 +238,112 @@
             </div>
         </div>
     </div>
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
 </div>
 </div>
 </body>
+
+<script>
+    $(document).ready(function () {
+        var campos_max = 9;         //Máximo de 9 campos
+        var x = 1;                  //2º campo - O primeiro está no HTML
+        $('#add_field').click(function (e) {
+            e.preventDefault();     //Prevenir novos clicks
+            if (x < campos_max) {
+                $('#listas').append(  '<div class="form-group itemProd">'
+                                    + '     <label>Produto: </label>'
+                                    + '     <input type="number" id="idProduto'+ x +'" oninput="getProduto(this.id)" name="idProduto' + x + '" class="form-control border-input">'
+                                    + '     <label>Nome do Produto: </label>'
+                                    + '     <input type="text" readonly id="nomeProduto'+ x +'" name="nomeProduto' + x + '" class="form-control border-input">'
+                                    + '     <label>Quantidade: </label>'
+                                    + '     <input type="text" id="qtdProduto0" name="qtdProduto'+ x +'" class="form-control border-input">'
+                                    + '     <label>Preço: </label>'
+                                    + '     <input type="number" readonly id="precoProduto'+ x +'" name="preco' + x + '" class="form-control border-input">'
+                                    + '     <label>Desconto: </label>'
+                                    + '     <input type="text" required name="desconto' + x + '" class="form-control border-input">'
+                                    + '<br><button type="button" class="remover_campo btn btn-default">Remover</button>'
+                                    + '</div>');
+                x++;
+            }
+        });
+
+        // Remover o div anterior
+        $('#listas').on("click", ".remover_campo", function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        });
+    });
+
+    function getCliente() {
+        if($('#codigoCliente').val() == ""){
+            $('#nomeCliente').val("");
+        } else {
+            $.ajax({
+                url: "ajaxCliente.php",
+                method: "get",
+                data: {codigo: jQuery('#codigoCliente').val()},
+                dataType: "HTML",
+                success: function (resultado) {
+                    if(resultado != ""){
+                        $('#nomeCliente').empty();
+                        $('#nomeCliente').val(resultado);
+                    } else {
+                        $('#nomeCliente').val("");
+                    }
+                }
+            });
+        }
+    }
+
+    function getProduto(id) {
+        let numId = id.replace(/\D/g, "");
+        if($("#" + id).val() == ""){
+            $('#nomeProduto' + numId + '').val("");
+            $('#precoProduto' + numId + '').val("");
+        } else {
+            $.ajax({
+                url: "ajaxProduto.php",
+                method: "get",
+                data: {codigo: jQuery('#' + id).val()},
+                dataType: "json",
+                success: function (resultado) {
+                    console.log(resultado);
+                    if(resultado.length != {}){
+                        $('#nomeProduto' + numId + '').empty();
+                        $('#nomeProduto' + numId + '').val(resultado.nome);
+                        $('#precoProduto' + numId + '').empty();
+                        $('#precoProduto' + numId + '').val(resultado.preco);
+                    } else {
+                        $('#nomeProduto' + numId + '').val("");
+                        $('#precoProduto' + numId + '').val("");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+<style>
+    .itemProd{
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
+
+<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!--   Core JS Files   -->
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>
