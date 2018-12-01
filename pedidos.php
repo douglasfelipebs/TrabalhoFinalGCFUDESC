@@ -89,7 +89,7 @@
                                     ?>
                                     <script>
                                         function exclui(id) {
-                                            window.location = 'exclui.php?id=' + id + '&tipo=cli';
+                                            window.location = 'exclui.php?id=' + id + '&tipo=ped';
                                         }
 
                                         function alterarItem(id) {
@@ -135,13 +135,17 @@
                     <div class="modal-body">
                         <form name="cadastro" id="cadastro" action="cadastraPedido.php" method="POST">
                             <div class="row">
-                                <div class="col-lg-3 form-group">
+                                <div class="col-lg-2 form-group">
                                     <label for="codigoCliente" class="ffl-label">Cliente</label>
-                                    <input type="number" class="form-control border-input" id="codigoCliente" oninput="getCliente()" name="codigoCliente">
+                                    <input type="number" required class="form-control border-input" id="codigoCliente" oninput="getCliente()" name="codigoCliente">
                                 </div>
-                                <div class="col-lg-9 form-group">
+                                <div class="col-lg-6 form-group">
                                     <label>Nome do Cliente</label>
-                                    <input type="text" readonly class="form-control border-input" id="nomeCliente" name="nomeCliente">
+                                    <input type="text" required readonly class="form-control border-input" id="nomeCliente" name="nomeCliente">
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>Valor Total</label>
+                                    <input type="number" required readonly class="form-control border-input" id="valorTotal" name="valorTotal">
                                 </div>
                             </div>
                             <div class="row">
@@ -155,15 +159,15 @@
                                             <div id="listas">
                                                 <div class="form-group itemProd">
                                                     <label>Produto: </label>
-                                                    <input type="number" id="idProduto0" oninput="getProduto(this.id)" name="idProduto0" class="form-control border-input">
+                                                    <input type="number" required id="idProduto0" oninput="getProduto(this.id)" name="idProduto[0]" class="form-control border-input">
                                                     <label>Nome do Produto: </label>
-                                                    <input type="text" readonly id="nomeProduto0" name="nomeProduto0" class="form-control border-input">
+                                                    <input type="text" required readonly id="nomeProduto0" name="nomeProduto[0]" class="form-control border-input">
                                                     <label>Quantidade: </label>
-                                                    <input type="text" id="qtdProduto0" name="qtdProduto0" class="form-control border-input">
+                                                    <input type="text" required oninput="alteraValorTotal()" id="qtdProduto0" name="qtdProduto[0]" class="form-control border-input">
                                                     <label>Preço: </label>
-                                                    <input type="number" readonly id="precoProduto0" name="preco0" class="form-control border-input">
+                                                    <input type="number" required readonly id="precoProduto0" name="preco[0]" class="form-control border-input">
                                                     <label>Desconto: </label>
-                                                    <input type="text" required name="desconto0" class="form-control border-input">
+                                                    <input type="text" oninput="alteraValorTotal()" name="desconto[0]" id="desconto0" class="form-control border-input">
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -192,43 +196,47 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <form name="cadastro" id="cadastro" action="alteraPedido.php" method="POST">
-                        <div class="form-group">
-                            <label for="codigoAltera" class="ffl-label" hidden>Código</label>
-                            <input type="text" id="codigoAltera" name="codigoAltera" hidden>
+                    <form name="cadastro" id="cadastro" action="cadastraPedido.php" method="POST">
+                        <div class="row">
+                            <div class="col-lg-2 form-group">
+                                <label for="codigoCliente" class="ffl-label">Cliente</label>
+                                <input type="number" required class="form-control border-input" id="codigoCliente" oninput="getCliente()" name="codigoCliente">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Nome do Cliente</label>
+                                <input type="text" required readonly class="form-control border-input" id="nomeCliente" name="nomeCliente">
+                            </div>
+                            <div class="col-lg-4 form-group">
+                                <label>Valor Total</label>
+                                <input type="number" required readonly class="form-control border-input" id="valorTotal" name="valorTotal">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="nomeAltera" class="ffl-label">Nome</label>
-                            <input type="text" class="form-control border-input" id="nomeAltera" name="nomeAltera">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1 form-group">
+                                <div class="row">
+                                    <fieldset>
+                                        <legend>Produtos</legend>
+                                        <button type="button" id="add_field" class="btn btn-default">Adicionar</button>
+                                        <br>
+                                        <br>
+                                        <div id="listas">
+                                            <div class="form-group itemProd">
+                                                <label>Produto: </label>
+                                                <input type="number" required id="idProduto0" oninput="getProduto(this.id)" name="idProduto[0]" class="form-control border-input">
+                                                <label>Nome do Produto: </label>
+                                                <input type="text" required readonly id="nomeProduto0" name="nomeProduto[0]" class="form-control border-input">
+                                                <label>Quantidade: </label>
+                                                <input type="text" required oninput="alteraValorTotal()" id="qtdProduto0" name="qtdProduto[0]" class="form-control border-input">
+                                                <label>Preço: </label>
+                                                <input type="number" required onchange="alteraValorTotal()" readonly id="precoProduto0" name="preco[0]" class="form-control border-input">
+                                                <label>Desconto: </label>
+                                                <input type="text" oninput="alteraValorTotal()" name="desconto[0]" id="desconto0" class="form-control border-input">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="cpfAltera" class="ffl-label">CPF</label>
-                            <input type="text" id="cpfAltera" class="form-control border-input" name="cpfAltera"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="logradouroAltera" class="ffl-label">Logradouro</label>
-                            <input type="text" class="form-control border-input" id="logradouroAltera"
-                                   name="logradouroAltera">
-                        </div>
-                        <div class="form-group">
-                            <label for="numeroAltera" class="ffl-label">Número</label>
-                            <input type="number" class="form-control border-input" id="numeroAltera"
-                                   name="numeroAltera">
-                        </div>
-                        <div class="form-group">
-                            <label for="bairroAltera" class="ffl-label">Bairro</label>
-                            <input type="text" class="form-control border-input" id="bairroAltera" name="bairroAltera">
-                        </div>
-                        <div class="form-group">
-                            <label for="cidadeAltera" class="ffl-label">Cidade</label>
-                            <input type="text" class="form-control border-input" id="cidadeAltera" name="cidadeAltera">
-                        </div>
-                        <div class="form-group">
-                            <label for="cepAltera" class="ffl-label">CEP</label>
-                            <input type="text" class="form-control border-input" id="cepAltera" name="cepAltera">
-                        </div>
-                        <label for="ufAltera" class="ffl-label">UF</label>
-                        <input type="text" class="form-control border-input" id="ufAltera" name="ufAltera">
                 </div>
                 </form>
                 <div class="modal-footer">
@@ -261,15 +269,15 @@
             if (x < campos_max) {
                 $('#listas').append(  '<div class="form-group itemProd">'
                                     + '     <label>Produto: </label>'
-                                    + '     <input type="number" id="idProduto'+ x +'" oninput="getProduto(this.id)" name="idProduto' + x + '" class="form-control border-input">'
+                                    + '     <input type="number" required id="idProduto'+ x +'" oninput="getProduto(this.id)" name="idProduto[' + x + ']" class="form-control border-input">'
                                     + '     <label>Nome do Produto: </label>'
-                                    + '     <input type="text" readonly id="nomeProduto'+ x +'" name="nomeProduto' + x + '" class="form-control border-input">'
+                                    + '     <input type="text" required readonly id="nomeProduto'+ x +'" name="nomeProduto[' + x + ']" class="form-control border-input">'
                                     + '     <label>Quantidade: </label>'
-                                    + '     <input type="text" id="qtdProduto0" name="qtdProduto'+ x +'" class="form-control border-input">'
+                                    + '     <input type="text" required  oninput="alteraValorTotal()" id="qtdProduto0" name="qtdProduto['+ x +']" class="form-control border-input">'
                                     + '     <label>Preço: </label>'
-                                    + '     <input type="number" readonly id="precoProduto'+ x +'" name="preco' + x + '" class="form-control border-input">'
+                                    + '     <input type="number" onchange="alteraValorTotal()" readonly id="precoProduto'+ x +'" name="preco[' + x + ']" class="form-control border-input">'
                                     + '     <label>Desconto: </label>'
-                                    + '     <input type="text" required name="desconto' + x + '" class="form-control border-input">'
+                                    + '     <input type="text"  oninput="alteraValorTotal()" name="desconto[' + x + ']" id="desconto' + x + '" class="form-control border-input">'
                                     + '<br><button type="button" class="remover_campo btn btn-default">Remover</button>'
                                     + '</div>');
                 x++;
@@ -317,7 +325,6 @@
                 data: {codigo: jQuery('#' + id).val()},
                 dataType: "json",
                 success: function (resultado) {
-                    console.log(resultado);
                     if(resultado.length != {}){
                         $('#nomeProduto' + numId + '').empty();
                         $('#nomeProduto' + numId + '').val(resultado.nome);
@@ -327,9 +334,22 @@
                         $('#nomeProduto' + numId + '').val("");
                         $('#precoProduto' + numId + '').val("");
                     }
+                    alteraValorTotal();
                 }
             });
         }
+    }
+
+    function alteraValorTotal(){
+        let aPrecos     = $('*[id*=precoProduto]');
+        let aQuantidade = $('*[id*=qtdProduto]');
+        let aDescontos  = $('*[id*=desconto]');
+
+        let valorTotal = 0;
+        $.each(aPrecos, function (index, value) {
+            valorTotal += ((this.value - aDescontos[index].value) * aQuantidade[index].value);
+        });
+        $('#valorTotal').val(valorTotal);
     }
 </script>
 

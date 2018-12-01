@@ -20,6 +20,9 @@ switch ($tipo) {
         $sSql = "DELETE FROM tbcliente WHERE clicodigo = {$id}";
         $sLocation = "Location: clientes.php";
         break;
+    case 'ped':
+        $sSql = "DELETE FROM tbpedidoproduto WHERE pedcodigo = {$id}; DELETE FROM tbpedido WHERE pedcodigo = {$id}";
+        $sLocation = "Location: pedidos.php";
     default:
         break;
 }
